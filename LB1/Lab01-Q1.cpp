@@ -1,48 +1,42 @@
 class Solution {
    public:
-    bool isMonotonic(vector<int>& nums) {
-        int count = 0;
-
+    bool isMonotonic(vector<int> &nums) {
         if (nums.size() == 1) {
-            count++  // return operation
-                return true;
+            // Comparison: Count = 1 (nums.size() == 1)
+            return true;  // Count = 1 (return)
         }
 
-        count++;  // bool enq = true;
-        count++;  // bool inc = true;
-        count++;  // int i = 0;
-        bool enq = true;
-        bool inc = true;
-        int i = 0;
+        bool enq = true;  // Count = 1 (Assignment)
+        bool inc = true;  // Count = 1 (Assignment)
+        int i = 0;        // Count = 1 (Assignment)
 
         for (; i < nums.size() - 1; i++) {
-            // Loop comparison
-            count += 2;  // i < nums.size() - 1
-            // Comparison
-            count += 4;  // nums[i] != nums[i + 1]
+            // Each iteration:
+            // - Comparison: Count = 1 (i < arr.size())
+            // - Increment: Count = 1 (i++)
+
             if (nums[i] != nums[i + 1]) {
-                count++;     // enq = false;
-                count += 5;  // inc = nums[i] < nums[i + 1];
-                enq = false;
-                inc = nums[i] < nums[i + 1];
+                // Comparison: Count = 4 (nums[i] != nums[i + 1])
+                enq = false;                  // Count = 1 (Assignment)
+                inc = nums[i] < nums[i + 1];  // Count = 5 (Assignment and Comparison)
                 break;
             }
         }
         for (; i < nums.size() - 1; i++) {
-            // Loop comparison
-            count += 2;  // i < nums.size() - 1
-            // Comparison
-            count += 5;  // inc && nums[i] > nums[i + 1]
+            // Each iteration:
+            // - Comparison: Count = 1 (i < arr.size())
+            // - Increment: Count = 1 (i++)
             if (inc && nums[i] > nums[i + 1]) {
-                count++  //
-                    return false;
+                // Comparison: Count = 5 (inc && nums[i] > nums[i + 1])
+                return false;  // Count = 1 (return)
             }
-            // Comparison
-            count += 5;  // !inc && nums[i + 1] > nums[i]
+
             if (!inc && nums[i + 1] > nums[i]) {
-                return false;
+                // Comparison: Count = 6 (!inc && nums[i + 1] > nums[i])
+                return false;  // Count = 1 (return)
             }
         }
-        return true;
+
+        return true;  // Count = 1 (return)
     }
 };
